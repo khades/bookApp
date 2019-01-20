@@ -6,7 +6,7 @@ export const AuthorSchema = yup.object({
     lastName: yup.string().required("Обязательное поле").max(20, "Не более 20 символов"),
 });
 
-const minPrintingDate = new Date("01-01-1800");
+const minPrintingDate = new Date(1799, 12, 31);
 
 export const BookSchema = yup.object({
     title: yup.string()
@@ -30,8 +30,8 @@ export const BookSchema = yup.object({
         .typeError("Неверное значение"),
     printingDate: yup.date()
         .notRequired()
-        .min(minPrintingDate, "Дата должна быть не ранее 01/01/1800")
-        .typeError("Неверное значение"),
+        .typeError("Неверное значение")
+        .min(minPrintingDate, "Дата должна быть не ранее 01/01/1800"),
     ISBN: yup.string()
         .notRequired()
         .matches(ISBNRegExp, "Неверный формат идентификатора")

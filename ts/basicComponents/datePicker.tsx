@@ -19,6 +19,7 @@ class DayPickerComponent extends React.Component<IDatePickerProps, {}> {
 
     public render() {
         const value: Date = this.props.formik.values[this.props.name];
+
         return (
             <ControlGroup
                 name={this.props.name}
