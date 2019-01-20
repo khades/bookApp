@@ -1,0 +1,76 @@
+@import '../utils/index';
+
+.books {
+
+    // form>*+* {
+    //     margin-top: $container-spacing;
+    // }
+    // &>*+* {
+    //     margin-top: $container-spacing;
+
+    // }
+    &__hgroup {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    &__header {
+        user-select: none;
+        flex-grow: 2;
+        font-size: 1.6rem;
+        font-weight: bolder;
+    }
+    >* {
+        display: flex
+    }
+
+    >a {
+        justify-content: flex-end;
+    }
+
+    &__table-header &__year {
+        width: 27%;
+    }
+
+    &__table-header {
+        margin-top: 1.5rem;
+        line-height: 2rem;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    &__title {
+        width: 73%;
+    }
+
+    &__year {
+        flex-grow: 2;
+    }
+
+    &__item &__title,
+    &__item &__year {
+        margin-top: 0.5rem;
+    }
+
+    &__item,
+        {
+        padding-top: 4px;
+        margin-top: 4px;
+        border-top: 1px solid $color-grey;
+
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+
+        // a {
+        //     flex-grow: 2;
+        //     margin: 0.5rem;
+        // }
+
+        >* {
+            display: flex;
+        }
+
+
+    }
+}

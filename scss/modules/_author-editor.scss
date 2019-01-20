@@ -1,0 +1,16 @@
+@import '../utils/index';
+
+.author-editor {
+    > button {
+        margin-top: $container-spacing;
+    }
+    &__item {
+        margin-top: $container-spacing;
+        > * + * {
+            margin-top: $element-spacing;
+        }
+        label {
+            display: block;
+        }
+    }
+}
