@@ -35,8 +35,11 @@ export default class BookComponent extends React.PureComponent<IProps> {
                 </div>
             );
         }
+
         return (
             <div className="book">
+                {this.props.isNew && (<div className="book__header">Создание книги</div>)}
+                {!this.props.isNew && (<div className="book__header">Редактирование книги</div>)}
                 <Formik
                     initialValues={this.props.book}
                     isInitialValid={true}

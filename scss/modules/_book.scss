@@ -1,8 +1,17 @@
 @import '../utils/index';
 
 .book {
-    form > * + * {
+    form>*+* {
         margin-top: $container-spacing;
+    }
+
+    &__header {
+        font-size: 1.6rem;
+        font-weight: bolder;
+
+        +* {
+            margin-top: 1.5rem;
+        }
     }
 
 }

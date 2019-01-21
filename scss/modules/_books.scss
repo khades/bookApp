@@ -18,17 +18,9 @@
         display: flex
     }
 
-    >a {
-        justify-content: flex-end;
-    }
 
-    &__title {
-        width: 73%;
-    }
+   
 
-    &__year {
-        flex-grow: 2;
-    }
 
     &__table-header {
         margin-top: 1.5rem;
@@ -38,25 +30,70 @@
     }
 
     &__table-header &__year {
-        width: 27%;
+        width: 4rem;
+
+        @include breakpoint(480px) {
+            width: auto;
+            flex-grow: 2;
+
+        }
     }
 
     &__item {
         padding-top: 4px;
         margin-top: 4px;
         border-top: 1px solid $color-grey;
-
+        flex-wrap: wrap;
         display: flex;
         flex-direction: row;
         max-width: 100%;
+        justify-content: flex-end;
+
+        button {
+            margin-top: $element-spacing;
+            width: auto;
+
+            @include breakpoint(480px) {
+                margin-top: 0px;
+
+            }
+
+            text-align: center;
+            height: 2.2rem;
+        }
 
         >* {
             display: flex;
         }
     }
 
+    &__item &__title {
+        width: calc(100% - 4rem);
+        @include breakpoint(480px) {
+            width: 66%;
+        }
+
+    }
+
+    &__title {
+        flex-grow: 1;
+        @include breakpoint(480px) {
+            width: 66%;
+            flex-grow: 0;
+        }
+    }
+
+
+    &__item &__year {
+        width: 4rem;
+        @include breakpoint(480px) {
+            width: auto;
+            flex-grow: 2;
+        }
+    }
+
     &__item &__title,
     &__item &__year {
-        margin-top: 0.5rem;
+        margin-top: 0.6rem;
     }
 }

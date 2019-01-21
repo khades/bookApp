@@ -17,16 +17,38 @@ import "../scss/index.scss";
 import "../scss/modules/_site.scss";
 import Book from "./book/container";
 import Books from "./books/container";
-import reducers from "./reducers";
+import reducers, { IStore } from "./reducers";
 import * as routes from "./routes";
 
 const createStoreWithMiddleware = applyMiddleware(
     save(),
 )(createStore);
 
+let initialValues: IStore = load();
+
+// localStorage cant handle Date object, so we force-convert strings to objects in date fields
+initialValues = {
+    Books: Object.assign(
+        {},
+        initialValues.Books,
+        {
+            items: initialValues.Books.items.map((book) => {
+                if (typeof book.printingDate === "string") {
+                    return Object.assign(
+                        {},
+                        book,
+                        { printingDate: new Date(Date.parse(book.printingDate)) },
+                    );
+                }
+                return book;
+            }),
+        },
+    ),
+};
+
 const store = createStoreWithMiddleware(
     reducers,
-    load(),
+    initialValues,
 );
 
 ReactDOM.render((

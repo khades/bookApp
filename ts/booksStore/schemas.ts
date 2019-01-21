@@ -6,7 +6,7 @@ export const AuthorSchema = yup.object({
     lastName: yup.string().required("Обязательное поле").max(20, "Не более 20 символов"),
 });
 
-const minPrintingDate = new Date(1799, 12, 31);
+const minPrintingDate = new Date(1800, 0, 1);
 
 export const BookSchema = yup.object({
     title: yup.string()

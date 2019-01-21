@@ -16,10 +16,11 @@ export interface IDatePickerProps extends IDatePickerOuterProps {
 }
 
 class DayPickerComponent extends React.Component<IDatePickerProps, {}> {
-
     public render() {
-        const value: Date = this.props.formik.values[this.props.name];
-
+        let value: Date | string = this.props.formik.values[this.props.name];
+        if (typeof value === "string") {
+            value = new Date(Date.parse(value));
+        }
         return (
             <ControlGroup
                 name={this.props.name}
@@ -33,6 +34,7 @@ class DayPickerComponent extends React.Component<IDatePickerProps, {}> {
         );
     }
     private handleChange = (date: Date) => {
+        console.log("change");
         this.props.formik.setFieldValue(this.props.name, date);
     }
 }
