@@ -1,7 +1,11 @@
+const autoprefixer = require('autoprefixer')
 module.exports = {
     plugins: [
         require('postcss-inline-svg'),
-         require('autoprefixer')
+        autoprefixer({
+            grid:true,
+            browsers: "defaults, IE>9"
+        })
         // ,
         // require('cssnano')
     ]

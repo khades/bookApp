@@ -1,10 +1,19 @@
 @import '../utils/index';
 
 .book {
+    form {
+        margin-top: $container-spacing;
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
     form>*+* {
+  
         margin-top: $container-spacing;
     }
-
+ 
+    
     &__header {
         font-size: 1.6rem;
         font-weight: bolder;

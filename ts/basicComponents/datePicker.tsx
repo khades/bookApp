@@ -34,7 +34,6 @@ class DayPickerComponent extends React.Component<IDatePickerProps, {}> {
         );
     }
     private handleChange = (date: Date) => {
-        console.log("change");
         this.props.formik.setFieldValue(this.props.name, date);
     }
 }

@@ -2,8 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import "../../scss/modules/_books.scss";
 import { BooksState } from "../booksStore/reducer";
-import { sortTypes } from "../booksStore/types";
+import { Author, Book, sortTypes } from "../booksStore/types";
 import * as routes from "../routes";
+import BookRow from "./components/bookRow";
+import TableHeader from "./components/tableHeader";
 
 export type IStateProps = BooksState;
 
@@ -30,21 +32,30 @@ export default class BooksComponent extends React.PureComponent<IProps> {
                         </button>
                     </Link>
                 </div>
-                {this.generateTableHeader()}
-                {this.props.items.map((book) => (
-                    <div className="books__item" key={book.id} >
-                        <Link className="books__title" to={routes.toBook(book.id)}>{book.title}</Link>
-                        <Link className="books__year" to={routes.toBook(book.id)}>{book.yearOfPublish} </Link>
-                        <button
-                            type="button"
-                            className="button"
-                            data-id={book.id}
-                            onClick={this.removeBook}
-                        >
-                            Удалить
-                        </button>
-                    </div>
-                ))}
+                <div className="books__table-container">
+                    <table
+                        cellSpacing="0"
+                        cellPadding="0"
+                        className="books__table"
+                    >
+                        <thead>
+                            <TableHeader
+                                sortByTitleAsc={this.props.sortByTitleAsc}
+                                sortByTitleDesc={this.props.sortByTitleDesc}
+                                sortByYearAsc={this.props.sortByYearAsc}
+                                sortByYearDesc={this.props.sortByYearDesc}
+                                sortType={this.props.sortType}
+                            />
+                        </thead>
+                        <tbody>
+                            {this.props.items.map((item) => <BookRow
+                                key={item.id}
+                                book={item}
+                                removeBook={this.removeBook}
+                            />)}
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         );
@@ -55,53 +66,4 @@ export default class BooksComponent extends React.PureComponent<IProps> {
         this.props.removeBook(event.currentTarget.dataset.id);
     }
 
-    private generateTableHeader = () => {
-        if (this.props.sortType === sortTypes.TITLEASC) {
-            return (
-                <div className="books__table-header">
-                    <div className="books__title" onClick={this.onTitleClick}><b>Заголовок ▼</b></div>
-                    <div className="books__year" onClick={this.onYearClick}>Год</div>
-                </div>
-            );
-        }
-        if (this.props.sortType === sortTypes.TITLEDESC) {
-            return (
-                <div className="books__table-header">
-                    <div className="books__title" onClick={this.onTitleClick}><b>Заголовок ▲</b></div>
-                    <div className="books__year" onClick={this.onYearClick}>Год</div>
-                </div>
-            );
-        }
-        if (this.props.sortType === sortTypes.YEARASC) {
-            return (
-                <div className="books__table-header">
-                    <div className="books__title" onClick={this.onTitleClick}>Заголовок</div>
-                    <div className="books__year" onClick={this.onYearClick}><b>Год ▼</b></div>
-                </div>
-            );
-        }
-        return (
-            <div className="books__table-header">
-                <div className="books__title" onClick={this.onTitleClick}>Заголовок</div>
-                <div className="books__year" onClick={this.onYearClick}><b>Год ▲</b></div>
-            </div>
-        );
-    }
-
-    private onTitleClick = () => {
-        if (this.props.sortType === sortTypes.TITLEASC) {
-            this.props.sortByTitleDesc();
-        } else {
-            this.props.sortByTitleAsc();
-
-        }
-    }
-
-    private onYearClick = () => {
-        if (this.props.sortType === sortTypes.YEARASC) {
-            this.props.sortByYearDesc();
-        } else {
-            this.props.sortByYearAsc();
-        }
-    }
 }
