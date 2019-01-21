@@ -47,9 +47,7 @@ const ImageUploader = React.memo((props: IImageUploaderProps) => {
         };
         return (
             <div className="image-uploader">
-                <div className="image-uploader__image">
-                    <img src={data} />
-                </div>
+                <div className="image-uploader__image" style={{backgroundImage: "url(" + data + ")"}} />
                 <input onChange={uploadFile} type="file" accept=".jpg, .jpeg, .png" />
                 <button
                     className="button"
