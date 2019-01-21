@@ -24,7 +24,7 @@ const createStoreWithMiddleware = applyMiddleware(
     save(),
 )(createStore);
 
-let initialValues: IStore = load();
+let initialValues: IStore = load() as IStore;
 
 // localStorage cant handle Date object, so we force-convert strings to objects in date fields
 initialValues = {
