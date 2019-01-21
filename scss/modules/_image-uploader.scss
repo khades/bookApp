@@ -1,16 +1,12 @@
 @import "../utils/index";
 .image-uploader {
     >*+* {
-        margin-top: $element-spacing;
+        margin-top: $container-spacing;
     }
     &__image {
         height: 400px;  
-
-       // max-height: 400px;  
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain
-
-
     }
 }
