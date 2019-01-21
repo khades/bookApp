@@ -27,24 +27,26 @@ const createStoreWithMiddleware = applyMiddleware(
 let initialValues: IStore = load() as IStore;
 
 // localStorage cant handle Date object, so we force-convert strings to objects in date fields
-initialValues = {
-    Books: Object.assign(
-        {},
-        initialValues.Books,
-        {
-            items: initialValues.Books.items.map((book) => {
-                if (typeof book.printingDate === "string") {
-                    return Object.assign(
-                        {},
-                        book,
-                        { printingDate: new Date(Date.parse(book.printingDate)) },
-                    );
-                }
-                return book;
-            }),
-        },
-    ),
-};
+if (initialValues.Books && initialValues.Books.items) {
+    initialValues = {
+        Books: Object.assign(
+            {},
+            initialValues.Books,
+            {
+                items: initialValues.Books.items.map((book) => {
+                    if (typeof book.printingDate === "string") {
+                        return Object.assign(
+                            {},
+                            book,
+                            { printingDate: new Date(Date.parse(book.printingDate)) },
+                        );
+                    }
+                    return book;
+                }),
+            },
+        ),
+    };
+}
 
 const store = createStoreWithMiddleware(
     reducers,

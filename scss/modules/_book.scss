@@ -9,6 +9,10 @@
         font-size: 1.6rem;
         font-weight: bolder;
 
+        a {
+            text-decoration: underline;
+        }
+
         +* {
             margin-top: 1.5rem;
         }

@@ -1,6 +1,7 @@
 import { Form, Formik, FormikActions } from "formik";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
+import { Link } from "react-router-dom";
 import "../../scss/modules/_book.scss";
 import DatePicker from "../basicComponents/datePicker";
 import ImageUploader from "../basicComponents/imageUploader";
@@ -38,8 +39,13 @@ export default class BookComponent extends React.PureComponent<IProps> {
 
         return (
             <div className="book">
-                {this.props.isNew && (<div className="book__header">Создание книги</div>)}
-                {!this.props.isNew && (<div className="book__header">Редактирование книги</div>)}
+                <div className="book__header">
+                    <Link to={routes.Books}>Книги</Link>
+                    {" › "}
+                    {this.props.isNew ? "Создание" : "Редактирование"}
+
+                </div>
+
                 <Formik
                     initialValues={this.props.book}
                     isInitialValid={true}

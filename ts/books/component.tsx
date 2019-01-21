@@ -35,7 +35,14 @@ export default class BooksComponent extends React.PureComponent<IProps> {
                     <div className="books__item" key={book.id} >
                         <Link className="books__title" to={routes.toBook(book.id)}>{book.title}</Link>
                         <Link className="books__year" to={routes.toBook(book.id)}>{book.yearOfPublish} </Link>
-                        <button type="button" className="button" data-id={book.id} onClick={this.removeBook}>Удалить</button>
+                        <button
+                            type="button"
+                            className="button"
+                            data-id={book.id}
+                            onClick={this.removeBook}
+                        >
+                            Удалить
+                        </button>
                     </div>
                 ))}
 
